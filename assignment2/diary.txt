@@ -52,7 +52,7 @@ ID  Date    Start   Stop    Activity        Comments
                                             32 tests. Very happy - and in only 6
                                             hours!
 
-9:  02/06   00:15   xx:xx   Cleanup         I'v begun now working on tidying up 
+9:  02/06   00:15   00:45   Cleanup         I'v begun now working on tidying up 
                                             the program - making sure nothing
                                             exceeds 80 columns, removing 
                                             redundant code and such.
@@ -62,6 +62,18 @@ ID  Date    Start   Stop    Activity        Comments
                                             (both printf functions) that exceed
                                             80 columns.
 
+10: 02/06   00:45   01:45   Experiment      I've been quite unhappy with the
+                                            length of the program - lots of 
+                                            duplicated code in the moveXXXXs. 
+                                            Instead, I've created a new 
+                                            boardRotate function, which rotates
+                                            the board a certain number of times
+                                            (depending on move direction), and
+                                            then calls the moveRight function
+                                            (moveRight being the first one I
+                                            wrote). This new setup, after some 
+                                            testing passes all dryrun tests, and
+                                            is a lot neater.
 
 
 

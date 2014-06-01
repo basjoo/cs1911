@@ -41,7 +41,6 @@ void printBoard(int board[SIZE][SIZE]);
 int readBoard(int board[SIZE][SIZE]);
 void printHelp(void);                           //DO NOT MODIFY
 void insertNewNumber(int board[SIZE][SIZE]);    //DO NOT MODIFY
-void rotateBoard(int board[SIZE][SIZE]);        //Original Function
 
 // The functions moveLeft, moveRight, moveUp, moveDown
 // return -1 if the specified moving numbers  is not possible.
@@ -49,46 +48,70 @@ void rotateBoard(int board[SIZE][SIZE]);        //Original Function
 // the change to the score from combining adjacent identical numbers.
 // They return 0 if no numbers were combined.
 
-void rotateBoard(int board[SIZE][SIZE]) {
+int moveLeft(int board[SIZE][SIZE]) {
 
     //Initialise Variables
     int i = 0;
     int j = 0;
-    int boardTemp[SIZE][SIZE] = {{0}};
+    int moveScore = 0;
+    int changeFlag = 1;
+    int changeCounter = 0;
 
-    //Rotate board 90 degrees
-    for (i = 0; i < SIZE; i++) {
-        for (j = 0; j < SIZE; j++) {
-            boardTemp[i][j] = board[SIZE-j-1][i];
+    //Move Left (Shift to edge)
+    changeFlag = 1;
+    while (changeFlag == 1) {
+        changeFlag = 0;
+        for (i = 0; i < SIZE; i++) {
+            for (j = SIZE - 1; j >= 0; j--) {
+                if (j == 0 || board[i][j] == 0) {
+                    continue;
+                } else if (board[i][j-1] == 0) {
+                    board[i][j-1] = board[i][j];
+                    board[i][j] = 0;
+                    changeFlag = 1;
+                    changeCounter = changeCounter + 1;
+                }
+            }
         }
     }
 
-    //Write back over board
-    for (j = 0; j < SIZE; j++) {
-        for (i = 0; i < SIZE; i++) {
-            board[i][j] = boardTemp[i][j];
+    //Move Left (Additive)
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            if (j == 0 || board[i][j] == 0) {
+                continue;
+            } else if (board[i][j] == board[i][j-1]) {
+                board[i][j-1] = 2*board[i][j-1];
+                board[i][j] = 0;
+                moveScore = moveScore + board[i][j-1];
+            }
         }
-    }    
-}
+    }
 
-int moveLeft(int board[SIZE][SIZE]) {
-
-    //Initialise Variables
-    int moveResult = 0;
-
-    //Rotate Board 2x
-    rotateBoard(board);
-    rotateBoard(board);
-
-    //Call moveRight
-    moveResult = moveRight(board);
-
-    //Rotate Back
-    rotateBoard(board);
-    rotateBoard(board);
+    //Move Left (Shift to edge)
+    changeFlag = 1;
+    while (changeFlag == 1) {
+        changeFlag = 0;
+        for (i = 0; i < SIZE; i++) {
+            for (j = SIZE - 1; j >= 0; j--) {
+                if (j == 0 || board[i][j] == 0) {
+                    continue;
+                } else if (board[i][j-1] == 0) {
+                    board[i][j-1] = board[i][j];
+                    board[i][j] = 0;
+                    changeFlag = 1;
+                    changeCounter = changeCounter + 1;
+                }
+            }
+        }
+    }
 
     //Return score to main
-    return moveResult;
+    if (moveScore == 0 && changeCounter == 0) {
+        return -1; 
+    } else {
+        return moveScore;
+    } 
 }
 
 int moveRight(int board[SIZE][SIZE]) {
@@ -160,41 +183,133 @@ int moveRight(int board[SIZE][SIZE]) {
 int moveDown(int board[SIZE][SIZE]) {
 
     //Initialise Variables
-    int moveResult = 0;
+    int i = 0;
+    int j = 0;
+    int moveScore = 0;
+    int changeFlag = 1;
+    int changeCounter = 0;
 
-    //Rotate Board 3x
-    rotateBoard(board);
-    rotateBoard(board);
-    rotateBoard(board);
+    //Move Down (Shift to edge)
+    changeFlag = 1;
+    while (changeFlag == 1) {
+        changeFlag = 0;
+        for (j = 0; j < SIZE; j++) {
+            for (i = 0; i < SIZE; i++) {
+                if (i == SIZE - 1 || board[i][j] == 0) {
+                    continue;
+                } else if (board[i+1][j] == 0) {
+                    board[i+1][j] = board[i][j];
+                    board[i][j] = 0;
+                    changeFlag = 1;
+                    changeCounter = changeCounter + 1;
+                }
+            }
+        }
+    }
 
-    //Call moveRight
-    moveResult = moveRight(board);
+    //Move Down (Additive)
+    for (j = 0; j < SIZE; j++) {
+        for (i = SIZE - 1; i >= 0; i--) {
+            if (i == SIZE - 1 || board[i][j] == 0) {
+                continue;
+            } else if (board[i][j] == board[i+1][j]) {
+                board[i+1][j] = 2*board[i+1][j];
+                board[i][j] = 0;
+                moveScore = moveScore + board[i+1][j];
+            }
+        }
+    }
 
-    //Rotate Back
-    rotateBoard(board);
+    //Move Down (Shift to edge)
+    changeFlag = 1;
+    while (changeFlag == 1) {
+        changeFlag = 0;
+        for (j = 0; j < SIZE; j++) {
+            for (i = 0; i < SIZE; i++) {
+                if (i == SIZE - 1 || board[i][j] == 0) {
+                    continue;
+                } else if (board[i+1][j] == 0) {
+                    board[i+1][j] = board[i][j];
+                    board[i][j] = 0;
+                    changeFlag = 1;
+                    changeCounter = changeCounter + 1;
+                }
+            }
+        }
+    }
 
     //Return score to main
-    return moveResult;
+    if (moveScore == 0 && changeCounter == 0) {
+        return -1; 
+    } else {
+        return moveScore;
+    } 
 }
 
 int moveUp(int board[SIZE][SIZE]) {
 
     //Initialise Variables
-    int moveResult = 0;
+    int i = 0;
+    int j = 0;
+    int moveScore = 0;
+    int changeFlag = 1;
+    int changeCounter = 0;
 
-    //Rotate Board 3x
-    rotateBoard(board);
+    //Move Up (Shift to edge)
+    changeFlag = 1;
+    while (changeFlag == 1) {
+        changeFlag = 0;
+        for (j = 0; j < SIZE; j++) {
+            for (i = SIZE - 1; i >= 0; i--) {
+                if (i == 0 || board[i][j] == 0) {
+                    continue;
+                } else if (board[i-1][j] == 0) {
+                    board[i-1][j] = board[i][j];
+                    board[i][j] = 0;
+                    changeFlag = 1;
+                    changeCounter = changeCounter + 1;
+                }
+            }
+        }
+    }
 
-    //Call moveRight
-    moveResult = moveRight(board);
+    //Move Up (Additive)
+    for (j = 0; j < SIZE; j++) {
+        for (i = 0; i < SIZE; i++) {
+            if (i == 0 || board[i][j] == 0) {
+                continue;
+            } else if (board[i][j] == board[i-1][j]) {
+                board[i-1][j] = 2*board[i-1][j];
+                board[i][j] = 0;
+                moveScore = moveScore + board[i-1][j];
+            }
+        }
+    }
 
-    //Rotate Back
-    rotateBoard(board);
-    rotateBoard(board);
-    rotateBoard(board);
+    //Move Up (Shift to edge)
+    changeFlag = 1;
+    while (changeFlag == 1) {
+        changeFlag = 0;
+        for (j = 0; j < SIZE; j++) {
+            for (i = SIZE - 1; i >= 0; i--) {
+                if (i == 0 || board[i][j] == 0) {
+                    continue;
+                } else if (board[i-1][j] == 0) {
+                    board[i-1][j] = board[i][j];
+                    board[i][j] = 0;
+                    changeFlag = 1;
+                    changeCounter = changeCounter + 1;
+                }
+            }
+        }
+    }
 
     //Return score to main
-    return moveResult;
+    if (moveScore == 0 && changeCounter == 0) {
+        return -1; 
+    } else {
+        return moveScore;
+    } 
 }
 
 // gameOver returns 0 iff it is possible to make a move on the board
@@ -404,9 +519,11 @@ int main(int argc, char *argv[]) {
 // print a help message
 // do not change this function
 
-void printHelp(void) {
+void
+printHelp(void) {
     printf("Enter h or a for left, j or s for down, k or w for up, l or d for right, q to quit\n");
 }
+
 
 // add a new number to the board
 // it will either be a 2 (90% probability) or a 4 (10% probability)

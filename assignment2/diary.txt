@@ -1,0 +1,67 @@
+ID  Date    Start   Stop    Activity        Comments
+********************************************************************************
+1:  01/06   17:00   17:20   Setup           Read task, setup folders and
+                                            file organisation. I also sorted
+                                            the source file, putting in headers
+                                            and function prototypes.
+
+2:  01/06   17:40   18:20   Coding          Began coding of readBoard and 
+                                            printBoard as per assignment hints. 
+
+3:  01/06   19:15   20:00   Coding          Continue from before. Trying to 
+                                            finish readBoard and printBoard. 
+
+4:  01/06   20:00   20:45   Debugging       Have been running 2048 through GCC
+                                            and the first two dryruns. Have had
+                                            some issues with getting printBoard
+                                            right, but nothing too difficult.
+                                            I've also written the function
+                                            boardContains2048 so that I can get
+                                            those dryruns correct.
+
+5:  01/16   21:00   21:30   Coding          Now that those three functions are
+                                            working nicely, I'll start working
+                                            on the moveXXXX functions. I don't 
+                                            think they'll be too hard - just
+                                            more loops. gameOver may be hard.
+
+6:  01/16   21:30   22:10   Coding          I've got moveRight adding numbers
+                                            correctly, but I forgot about having
+                                            it shift everything as far right as
+                                            possible (basically overriding 0s).
+
+                                            Return values are correct.
+
+                                            I've finalised moveRight and tested
+                                            it, and I've also written and tested
+                                            moveLeft. Now onto moveUp and Down.
+
+7:  01/16   22:10   23:00   Coding          I found some issues with moveRight
+                                            and the others (wasn't shifting 
+                                            after addition), but with that fixed
+                                            I've been able to complete all 
+                                            different moveXXXX functions. 
+
+8:  01/06   23:00   23:45   Coding          I've written the gameOver function - 
+                                            it was relatively simple, I 
+                                            duplicated the board and ran all 
+                                            moveXXXX functions against it.
+
+                                            After some miscellaneous debugging,
+                                            I've run the dryrun and passed all
+                                            32 tests. Very happy - and in only 6
+                                            hours!
+
+9:  02/06   00:15   xx:xx   Cleanup         I'v begun now working on tidying up 
+                                            the program - making sure nothing
+                                            exceeds 80 columns, removing 
+                                            redundant code and such.
+
+                                            I have noticed, but will not edit - 
+                                            there are two lines of code in main
+                                            (both printf functions) that exceed
+                                            80 columns.
+
+
+
+

@@ -1,0 +1,97 @@
+ID  Date    Start   Stop    Activity        Comments
+************************************************************************
+1:  16/04   07:00   07:15   Introduction    Read task, setup folders and
+                                            file organisation.
+
+2:  16/04   07:15   08:00   Coding          First attempt at Part 1   
+
+3:  16/04   08:00   08:25   Testing & Debug After many errors, the 
+                                            program now works properly
+                                            whilst running my own tests.
+
+4:  16/04   08:30   08:35   Dryrun & Tweaks Tests showed issue in code -                                            
+                                            Need to modify to terminate 
+                                            only when there is no 
+                                            further input.
+
+5:  16/04   08:45   09:15   Passed Dryrun   After much tweaking, the 
+                                            program now passes it's 
+                                            dryrun test. It will be 
+                                            tidied and refined as the 
+                                            project continues.
+
+6:  25/04   11:40   11:55   Begin Part 2    Just getting the printf 
+                                            functions and other code
+                                            shared with Part 1 to work
+
+7:  25/04   11:55   12:20   Coding          Actually make the program 
+                                            convert Roman numerals to 
+                                            decimal
+
+8:  25/04   01:15   02:20   Coding          Continue from before
+
+9:  25/04   02:20   02:45   Research        Having written code to 
+                                            convert roman numerals into
+                                            decimal (untested), I am 
+                                            researching methods to 
+                                            identify illegal numerals
+                                            (e.g. IVI != 6). I have come
+                                            across an idea to do a back
+                                            conversion (i.e. run it 
+                                            through part 1) and compare.
+
+                                            I can easily get rid of 
+                                            spaces and differences in 
+                                            case using lab07 code.
+
+10: 25/04   03:00   04:30    Coding          I've implemented all of the
+                                            code for the Advanced part, 
+                                            but still have not tested - 
+                                            poor practice I know 
+
+11: 25/04   08:00   10:30   Debugging       Program compiles perfectly 
+                                            in GCC, works partially in
+                                            DCC and breaks entirely in 
+                                            VCC. After many attempts and
+                                            much research I am no closer
+                                            to a solution. On the plus
+                                            side the actual conversion
+                                            of roman numeral to decimal 
+                                            is perfect, including the 
+                                            'Advanced' conditions.
+
+                                            I shall revisit in a few 
+                                            days. Any more self-harm 
+                                            would be tantamount to 
+                                            suicide. 
+
+12: 25/04   10:30   11:30   Dryrun Fix      So I couldn't wait. I found 
+                                            and fixed the problem 
+                                            (string length problems), 
+                                            I now just need to clean up 
+                                            both programs. I'll try to 
+                                            make them more consistent
+                                            with one another. I may also
+                                            look at utilising functions
+                                            - we'll see how workload is
+
+13: 26/04   11:30   12:30   Cleanup         Just tidying the code on 
+                                            both programs, getting rid 
+                                            of redundant variables and 
+                                            such.
+
+14: 26/04   01:30   02:30   Functions       I've broken off a large part
+                                            of the RtoD code into its 
+                                            own function, it's not 
+                                            necessarily easier to read
+                                            but at least it demonstrates
+                                            knowledge of functions and 
+                                            make me violate that 72
+                                            width limit a bit less
+                                            
+15  30/04   07:30   07:45   Tweaking        Just condensed a bit of code
+                                            following something covered
+                                            in yesterday's lab.
+
+                                            The assignment is currently 
+                                            ready for submission.

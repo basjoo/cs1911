@@ -26,7 +26,7 @@
 #include <string.h>
 #include <time.h>
 
-#define SIZE 4          //Length of matrix edges
+#define SIZE 4
 #define GOAL 2048       //Can change if you don't want 2048 to be the goal tile
 
 // Function Prototypes
@@ -39,13 +39,15 @@ int gameOver(int board[SIZE][SIZE]);
 int boardContains2048(int board[SIZE][SIZE]);
 void printBoard(int board[SIZE][SIZE]);
 int readBoard(int board[SIZE][SIZE]);
-void printHelp(void);                               //DO NOT MODIFY
-void insertNewNumber(int board[SIZE][SIZE]);        //DO NOT MODIFY
-void rotateBoard(int board[SIZE][SIZE]);            //Original Function
-int bossMove(int board[SIZE][SIZE], int rotations); //Original Function
+void printHelp(void);                           //DO NOT MODIFY
+void insertNewNumber(int board[SIZE][SIZE]);    //DO NOT MODIFY
+void rotateBoard(int board[SIZE][SIZE]);        //Original Function
 
-// Function rotates the board by 90 degrees. This allows a generic moveXXXX
-// function to work for all moves
+// The functions moveLeft, moveRight, moveUp, moveDown
+// return -1 if the specified moving numbers  is not possible.
+// Otherwise they move the numbers as indicated and return 
+// the change to the score from combining adjacent identical numbers.
+// They return 0 if no numbers were combined.
 
 void rotateBoard(int board[SIZE][SIZE]) {
 
@@ -69,10 +71,27 @@ void rotateBoard(int board[SIZE][SIZE]) {
     }    
 }
 
-// The original moveRight function, but modified to rotate the board based on
-// how many times required for direction (0 = R, 1 = U, 2 = L, 3 = D)
+int moveLeft(int board[SIZE][SIZE]) {
 
-int bossMove(int board[SIZE][SIZE], int rotations) {
+    //Initialise Variables
+    int moveResult = 0;
+
+    //Rotate Board 2x
+    rotateBoard(board);
+    rotateBoard(board);
+
+    //Call moveRight
+    moveResult = moveRight(board);
+
+    //Rotate Back
+    rotateBoard(board);
+    rotateBoard(board);
+
+    //Return score to main
+    return moveResult;
+}
+
+int moveRight(int board[SIZE][SIZE]) {
 
     //Initialise Variables
     int i = 0;
@@ -80,12 +99,6 @@ int bossMove(int board[SIZE][SIZE], int rotations) {
     int moveScore = 0;
     int changeFlag = 1;
     int changeCounter = 0;
-    int m = 0;                  //Rotation Counter
-
-    //Rotate board 90 degrees (Start)
-    for (m = 0; m < rotations; m++) {
-        rotateBoard(board);
-    }
 
     //Move Right (Shift to edge)
     changeFlag = 1;
@@ -136,51 +149,52 @@ int bossMove(int board[SIZE][SIZE], int rotations) {
         }
     }
 
-    //Rotate board 90 degrees (End)
-    for (m = 4; m > rotations; m--) {
-        rotateBoard(board);
-    }
-
     //Return score to main
     if (moveScore == 0 && changeCounter == 0) {
         return -1; 
     } else {
-        return moveScore;     
+        return moveScore;
     } 
-}
-
-// The functions moveLeft, moveRight, moveUp, moveDown
-// return -1 if the specified moving numbers  is not possible.
-// Otherwise they move the numbers as indicated and return 
-// the change to the score from combining adjacent identical numbers.
-// They return 0 if no numbers were combined.
-
-int moveLeft(int board[SIZE][SIZE]) {
-
-    //Direction specific bossMove (Left = 2 Rotations)
-    //Return score to main
-    return bossMove(board, 2);
-}
-
-int moveRight(int board[SIZE][SIZE]) {
-
-    //Direction specific bossMove (Right = 0 Rotations)
-    //Return score to main
-    return bossMove(board, 0);
 }
 
 int moveDown(int board[SIZE][SIZE]) {
 
-    //Direction specific bossMove (Down = 3 Rotations)
+    //Initialise Variables
+    int moveResult = 0;
+
+    //Rotate Board 3x
+    rotateBoard(board);
+    rotateBoard(board);
+    rotateBoard(board);
+
+    //Call moveRight
+    moveResult = moveRight(board);
+
+    //Rotate Back
+    rotateBoard(board);
+
     //Return score to main
-    return bossMove(board, 3);
+    return moveResult;
 }
 
 int moveUp(int board[SIZE][SIZE]) {
 
-    //Direction specific bossMove (Up = 1 Rotations)
+    //Initialise Variables
+    int moveResult = 0;
+
+    //Rotate Board 3x
+    rotateBoard(board);
+
+    //Call moveRight
+    moveResult = moveRight(board);
+
+    //Rotate Back
+    rotateBoard(board);
+    rotateBoard(board);
+    rotateBoard(board);
+
     //Return score to main
-    return bossMove(board, 1);
+    return moveResult;
 }
 
 // gameOver returns 0 iff it is possible to make a move on the board

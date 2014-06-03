@@ -75,5 +75,21 @@ ID  Date    Start   Stop    Activity        Comments
                                             testing passes all dryrun tests, and
                                             is a lot neater.
 
+11: 02/06   20:00   21:30   Finalisation    I've already submitted, but I have 
+                                            trimmed down the rotation and move
+                                            functions (introduced bossMove). 
+                                            This took some fiddling to work, but
+                                            the code has been condensed further:
+                                            the original moveXXXX functions are
+                                            skeletons now. I could go on, 
+                                            reducing the number of counter 
+                                            variables, or changing the board 
+                                            copying codes (and rotate) to use 
+                                            only a single temp variable, rather
+                                            than a whole array. But considering
+                                            the assignment is due in a few hours
+                                            I'll just leave it as is. I'm still
+                                            very happy with the code.
+
 
 
